@@ -8,7 +8,6 @@ const indicators = Array.from(slider_indicators.querySelector('.indicator'));
 const slideCount = slides.length;
 const indicatorCount = indicators.length;
 let slideIndex = 0;
-let indicatorIndex = 0;
 
 // Устанавливаем обработчики событий для кнопок
 prevButton.addEventListener('click', showPreviousSlide);
@@ -16,42 +15,39 @@ nextButton.addEventListener('click', showNextSlide);
 
 // Функция для показа предыдущего слайда
 function showPreviousSlide() {
-  slideIndex = (slideIndex - 1 + slideCount) % slideCount;
-  indicatorIndex = (indicatorIndex - 1 + indicatorCount) % indicatorCount;
-  thisSlide();
-  updateSlider();
+    slideIndex = (slideIndex - 1 + slideCount) % slideCount;
+    updateSlider();
+    thisSlide();
 }
 
 // Функция для показа следующего слайда
 function showNextSlide() {
-  slideIndex = (slideIndex + 1) % slideCount;
-  indicatorIndex = (indicatorIndex + 1) % indicatorCount;
-  thisSlide();
-  updateSlider();
-}
-
-//Индикаторы
-function thisSlide(){
-    indicators.forEach((indicator, index) => {
-        if (index === indicatorIndex) {
-          indicator.style.opacity = "1";
-        } else {
-          indicator.style.opacity = "0.5";
-        }
-      });
+    slideIndex = (slideIndex + 1) % slideCount;
+    updateSlider();
+    thisSlide();
 }
 
 // Функция для обновления отображения слайдера
 function updateSlider() {
-  slides.forEach((slide, index) => {
-    if (index === slideIndex) {
-      slide.style.display = 'block';
-    } else {
-      slide.style.display = 'none';
-    }
-  });
+    slides.forEach((slide, index) => {
+        if (index === slideIndex) {
+            slide.style.display = 'block';
+        } else {
+            slide.style.display = 'none';
+        }
+    });
 }
 
+//Индикаторы
+function thisSlide() {
+    indicators.forEach((indicator, index) => {
+        if (index !== slideIndex) {
+            indicator.style.opacity = "0.5";
+        } else {
+            indicator.style.opacity = "1";
+        }
+    });
+}
 // Инициализация слайдера
-thisSlide();
 updateSlider();
+thisSlide();
