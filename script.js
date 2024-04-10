@@ -45,4 +45,4 @@ nextButton.addEventListener('click', () => {
         item.style.opacity = '0.5'
     });
     dots[slideIndex - 1].style.opacity = '1'
-})
+});
