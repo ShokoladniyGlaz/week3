@@ -1,4 +1,3 @@
-// Получаем элементы слайдера
 const prevButton = document.querySelector('.prev-button');
 const nextButton = document.querySelector('.next-button');
 const wrapper = document.querySelector('.slider-container')
